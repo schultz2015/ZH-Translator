@@ -1,16 +1,12 @@
 import sys
-
 import requests
 import time
-
 import http.client
 import hashlib
 import urllib
 import random
 import json
-
 import cv2
-
 import pytesseract
 import openai
 from PyQt5 import QtWidgets
@@ -24,7 +20,6 @@ openai.api_key = ""#密钥
 
 appid = ''  # 填写你的百度appid
 secretKey = ''  # 填写你的密钥
-
 
 class PhotoLabel(QLabel):
 
