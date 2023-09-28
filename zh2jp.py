@@ -10,6 +10,7 @@ import random
 import json
 
 import cv2
+
 import pytesseract
 import openai
 from PyQt5 import QtWidgets
@@ -29,6 +30,7 @@ class PhotoLabel(QLabel):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
         self.setAlignment(Qt.AlignCenter)
         self.setText('\n\n 拖入图片 \n\n')
         self.setStyleSheet('''
@@ -55,7 +57,12 @@ class Template(QWidget):
         self.lineEdit_result = QLineEdit()
         self.lineEdit_result.setText("")
 
+        self.lineEdit_result.setStyleSheet("color: rgb(255,255,255)")
+
+
         self.jpn = QLineEdit()
+
+        self.jpn.setStyleSheet("color: rgb(255,255,255)")
 
         read = QPushButton('本地竖版')
         read.clicked.connect(self.read_image)
