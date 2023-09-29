@@ -8,16 +8,11 @@ import json
 
 import openai
 
-# openai.api_base = ""  # openai
-# openai.api_key = ""  # 密钥
-#
-# appid = ''  # 填写你的百度appid
-# secretKey = ''  # 填写你的密钥
-openai.api_base = "https://api.chatanywhere.com.cn/v1"  #openai
-openai.api_key = "sk-lMZCS1dNzmt4hDmLJkvWjiylx5YvvO9rHMGtVNf80uBBocqi"#密钥
+openai.api_base = ""  # openai
+openai.api_key = ""  # 密钥
 
-appid = '20230912001814943'  # 填写你的百度appid
-secretKey = 's_3ecwjHG4Ffp68syzhN'  # 填写你的密钥
+appid = ''  # 填写你的百度appid
+secretKey = ''  # 填写你的密钥
 
 class BaiDuTranslator:
     def __init__(self):
