@@ -157,9 +157,9 @@ class Template(QWidget):
     def read_local_horizontal(self):
         print("read_r")
         image = cv2.imread('input.png')
-        image = preprocess.Preprocess().scale(image=image)
+
         # 文字识别
-        denoised = preprocess.Preprocess().binary(image=image)
+        denoised = preprocess.Preprocess().process(image=image)
         text = pytesseract.image_to_string(denoised, lang='jpn')
         text = text.replace(" ", "").replace("\n", "")
         self.jpn.setText(text)
@@ -169,9 +169,8 @@ class Template(QWidget):
 
         image = cv2.imread('input.png')
         print("read_image")
-        image = preprocess.Preprocess().scale(image=image)
         # 文字识别
-        denoised = preprocess.Preprocess().binary(image=image)
+        denoised = preprocess.Preprocess().process(image=image)
         text = pytesseract.image_to_string(denoised, lang='jpn_vert')
         text = text.replace(" ", "").replace("\n", "")
         self.jpn.setText(text)
