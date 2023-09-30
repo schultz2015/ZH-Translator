@@ -17,7 +17,7 @@ from qt_material import apply_stylesheet
 
 import translator
 import preprocess
-
+import ToRoman
 
 class PhotoLabel(QLabel):
 
@@ -49,12 +49,13 @@ class Template(QWidget):
 
         self.lineEdit_result = QLineEdit()
         self.lineEdit_result.setText("")
-
         self.lineEdit_result.setStyleSheet("color: rgb(255,255,255)")
 
         self.jpn = QLineEdit()
-
         self.jpn.setStyleSheet("color: rgb(255,255,255)")
+
+        self.roman = QLineEdit()
+        self.roman.setStyleSheet("color: rgb(255,255,255)")
 
         read_local_vert = QPushButton('本地竖版')
         read_local_vert.clicked.connect(self.read_local_vert)
@@ -77,6 +78,7 @@ class Template(QWidget):
 
         grid = QGridLayout(self)
         grid.addWidget(self.lineEdit_result, 6, 0, 1, 4)
+        grid.addWidget(self.roman, 7, 0, 1, 4)
         grid.addWidget(youdao, 5, 0, 1, 1)
         grid.addWidget(baidu, 5, 1, 1, 1)
         grid.addWidget(gpt, 5, 2, 1, 1)
@@ -150,6 +152,7 @@ class Template(QWidget):
                 im = Image.open(filename)
         else:
             print("clipboard is empty")
+        self.photo.setPixmap(QPixmap("input.png"))
 
     def read_local_horizontal(self):
         print("read_r")
@@ -174,20 +177,28 @@ class Template(QWidget):
         self.jpn.setText(text)
 
     def YOUDAOtranslate(self):
+        romans = ToRoman.ToRoman().Roman(text=self.jpn.text())
         translateResult = translator.YouDaoTranslator().YOUDAOtranslate(text=self.jpn.text())
         self.lineEdit_result.repaint()
         self.lineEdit_result.setText(translateResult)
-
+        self.roman.repaint()
+        self.roman.setText(romans)
     def BAIDUtranslate(self):
+        romans = ToRoman.ToRoman().Roman(text=self.jpn.text())
         translateResult = translator.BaiDuTranslator().BAIDUtranslate(text=self.jpn.text())
         self.lineEdit_result.repaint()
         self.lineEdit_result.setText(translateResult)
 
+        self.roman.repaint()
+        self.roman.setText(romans)
     def GPTtranslate(self):
+        romans = ToRoman.ToRoman().Roman(text=self.jpn.text())
         translateResult = translator.GptTranslator().GPTtranslate(text=self.jpn.text())
         self.lineEdit_result.repaint()
         self.lineEdit_result.setText(translateResult)
 
+        self.roman.repaint()
+        self.roman.setText(romans)
 
 if __name__ == '__main__':
     # create the application and the main window
